@@ -37,3 +37,17 @@ ENV WORK_DIR=/app/bitcore
 
 # 创建路径
 RUN mkdir -p ${WORK_DIR}
+
+# 安装bitcore，并创建节点
+WORKDIR /app/bitcore
+
+RUN npm --registry https://registry.npm.taobao.org install -g --unsafe-perm=true bitcore
+RUN bitcore create rbtc_node && \
+    cd ${WORK_DIR}/rbtc_node && \
+    bitcore install insight-api insight-ui
+
+WORKDIR /app/bitcore/rbtc_node
+
+RUN rm -rf ./node_modules/bitcore-node/node_modules/bitcore-lib && \
+    rm -rf ./node_modules/bitcore-message/node_modules/bitcore-lib && \
+    rm -rf ./node_modules/insight-api/node_modules/bitcore-lib
