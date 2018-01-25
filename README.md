@@ -15,3 +15,47 @@
 ## 镜像标签(tags)
 
 - `littlemo/rbtc-explorer:latest`
+
+## 使用说明
+
+在使用时应按需为Web服务器进行端口映射，并挂载 `bitcore-node.json` 配置文件到路径 `/app/bitcore/rbtc_node/bitcore-node.json` 下（建议进行只读挂载）
+
+### bitcore-node.json 用例
+
+```json
+{
+  "network": "livenet",
+  "port": 80,
+  "services": [
+    "bitcoind",
+    "insight-api",
+    "insight-ui",
+    "web"
+  ],
+  "servicesConfig": {
+    "insight-ui": {
+      "routePrefix": "",
+      "apiPrefix": "api"
+    },
+    "insight-api": {
+      "routePrefix": "api",
+      "disableRateLimiter": true,
+      "enableCache": true
+    },
+    "bitcoind": {
+      "connect": [
+        {
+          "rpchost": "127.0.0.1",                   // 替换为相应节点主机的IP地址
+          "rpcport": 8332,                          // 替换为相应节点主机的RPC服务端口
+          "rpcuser": "username",                    // 替换为相应节点主机的RPC用户名
+          "rpcpassword": "password",                // 替换为相应节点主机的RPC密码
+          "zmqpubrawtx": "tcp://10.0.0.3:28332",    // 替换为相应节点主机的ZMQ服务IP&端口，下同
+          "zmqpubhashtx": "tcp://10.0.0.3:28332",
+          "zmqpubrawblock": "tcp://10.0.0.3:28332",
+          "zmqpubhashblock": "tcp://10.0.0.3:28332"
+        }
+      ]
+    }
+  }
+}
+```
