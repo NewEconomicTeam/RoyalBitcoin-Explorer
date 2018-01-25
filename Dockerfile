@@ -14,3 +14,7 @@ LABEL maintainer="moore@moorehy.com" \
       org.label-schema.vendor="NewEconomicTeam" \
       org.label-schema.version=$VERSION \
       org.label-schema.schema-version="1.0"
+
+# 替换为中科大软件源
+RUN sed -i 's|archive.ubuntu.com|mirrors.ustc.edu.cn|g' /etc/apt/sources.list && \
+    sed -i 's|security.ubuntu.com|mirrors.ustc.edu.cn|g' /etc/apt/sources.list
