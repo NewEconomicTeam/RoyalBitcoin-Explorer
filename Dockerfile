@@ -69,3 +69,16 @@ COPY ./source/insight-ui/public/views/index.html \
      ./node_modules/insight-ui/public/views/
 COPY ./source/insight-ui/public/index.html \
      ./node_modules/insight-ui/public/
+
+# 设置挂载点
+VOLUME [ \
+    "/app", \
+]
+
+# 设置开放端口
+EXPOSE 80 443
+
+# 启动命令
+CMD [ \
+    "bitcored" \
+]
