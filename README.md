@@ -59,3 +59,27 @@
   }
 }
 ```
+
+## 启动容器
+
+### docker-cli
+
+```bash
+$ docker run -d -p 80:80 -v /paht/to/bitcore-node.json:/app/bitcore/rbtc_node/bitcore-node.json --name rbtc-explorer littlemo/rbtc-explorer:latest
+```
+
+### docker-compose
+
+```yml
+version: '2'
+services:
+  explorer:
+    image: littlemo/rbtc-explorer
+    container_name: rbtc-explorer
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      # 挂载配置文件
+      - /paht/to/bitcore-node.json:/app/bitcore/rbtc_node/bitcore-node.json:ro
+```
