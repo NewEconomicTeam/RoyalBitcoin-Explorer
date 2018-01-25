@@ -18,3 +18,16 @@ LABEL maintainer="moore@moorehy.com" \
 # 替换为中科大软件源
 RUN sed -i 's|archive.ubuntu.com|mirrors.ustc.edu.cn|g' /etc/apt/sources.list && \
     sed -i 's|security.ubuntu.com|mirrors.ustc.edu.cn|g' /etc/apt/sources.list
+
+# 安装依赖库&扩展
+ADD https://deb.nodesource.com/setup_8.x /tmp/setup_8.x
+RUN bash /tmp/setup_8.x \
+    && rm /tmp/setup_8.x \
+    && apt-get install -y \
+        libboost-dev libboost-all-dev \
+        libdb-dev libdb++-dev libminiupnpc-dev \
+        libcrypto++-dev libevent-dev \
+        build-essential nodejs libzmq3-dev \
+        --no-install-recommends \
+    && ldconfig \
+    && rm -rf /var/lib/apt/lists/*
