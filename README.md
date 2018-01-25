@@ -11,3 +11,7 @@
 ### 其他
 
 [![license](https://img.shields.io/github/license/NewEconomicTeam/RoyalBitcoin-Explorer.svg)](https://github.com/NewEconomicTeam/RoyalBitcoin-Explorer)
+
+## 镜像标签(tags)
+
+- `littlemo/rbtc-explorer:latest`
