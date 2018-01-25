@@ -51,3 +51,21 @@ WORKDIR /app/bitcore/rbtc_node
 RUN rm -rf ./node_modules/bitcore-node/node_modules/bitcore-lib && \
     rm -rf ./node_modules/bitcore-message/node_modules/bitcore-lib && \
     rm -rf ./node_modules/insight-api/node_modules/bitcore-lib
+
+# 配置bitcore
+COPY ./source/config/networks.js ./node_modules/bitcore-lib/lib/networks.js
+
+# 替换insight-api资源
+COPY ./source/insight-api/lib/blocks.js ./node_modules/insight-api/lib/blocks.js
+
+# 替换insight-ui资源
+COPY ./source/insight-ui/public/js/main.* \
+     ./node_modules/insight-ui/public/js/
+COPY ./source/insight-ui/public/views/includes/currency.html \
+     ./source/insight-ui/public/views/includes/header.html \
+     ./node_modules/insight-ui/public/views/includes/
+COPY ./source/insight-ui/public/views/index.html \
+     ./source/insight-ui/public/views/status.html \
+     ./node_modules/insight-ui/public/views/
+COPY ./source/insight-ui/public/index.html \
+     ./node_modules/insight-ui/public/
