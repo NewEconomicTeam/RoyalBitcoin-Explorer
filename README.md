@@ -83,3 +83,7 @@ services:
       # 挂载配置文件
       - /paht/to/bitcore-node.json:/app/bitcore/rbtc_node/bitcore-node.json:ro
 ```
+
+## 问题
+
+如果您在使用该镜像时遇到任何问题，请查看镜像源码的 [NewEconomicTeam/RoyalBitcoin-Explorer](https://github.com/NewEconomicTeam/RoyalBitcoin-Explorer) Repo，并在其中提交 Issues 给我们，多谢您的帮助~~
