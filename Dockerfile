@@ -31,3 +31,9 @@ RUN bash /tmp/setup_8.x \
         --no-install-recommends \
     && ldconfig \
     && rm -rf /var/lib/apt/lists/*
+
+# 设置全局环境变量
+ENV WORK_DIR=/app/bitcore
+
+# 创建路径
+RUN mkdir -p ${WORK_DIR}
